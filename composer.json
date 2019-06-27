@@ -1,0 +1,95 @@
+{
+    "name": "aqilix/zf3-apigilty-oauth2",
+    "description": "Start API Development using ZF3, Apigility with OAuth2 support",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "api",
+        "apigility",
+        "zf3",
+        "oauth2",
+        "php5.6",
+        "php7"
+    ],
+    "homepage": "https://aqilix.com/",
+    "support": {
+        "email": "dolly.aswin@aqilix.com",
+        "source": "https://github.com/aqilix/zf3-apigilty-oauth2",
+        "issues": "https://github.com/aqilix/zf3-apigilty-oauth2/issues"
+    },
+    "config": {
+        "process-timeout": 5000
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.2-dev",
+            "dev-develop": "1.0.3-dev"
+        }
+    },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "zendframework/zend-component-installer": "^1.0 || ^0.3 || ^1.0.0-dev@dev",
+        "zfcampus/zf-apigility": "^1.3",
+        "zfcampus/zf-apigility-documentation": "^1.2.2",
+        "zfcampus/zf-development-mode": "^3.0",
+        "zfcampus/zf-http-cache": "^1.3",
+        "zfr/zfr-cors": "^1.2",
+        "zendframework/zend-cache": "^2.7.1",
+        "zendframework/zend-mime": "^2.6.0",
+        "zendframework/zend-mail": "^2.7.1",
+        "zendframework/zend-mvc-i18n": "^1.0",
+        "zendframework/zend-log": "^2.9",
+        "zendframework/zend-mvc-console": "^1.1.10",
+        "doctrine/doctrine-orm-module": "^1.1",
+        "symfony/process": "^3.1",
+        "aqilix/doctrine-data-fixture-module": "^0.0.6",
+        "gedmo/doctrine-extensions": "^2.4.23",
+        "psr/log": "^1.0",
+        "necromant2005/gearman-stats": "@dev",
+        "chillerlan/php-qrcode": "dev-master"
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "^1.1",
+        "zfcampus/zf-apigility-documentation-swagger": "^1.2",
+        "zfcampus/zf-apigility-admin": "^1.5.6",
+        "zfcampus/zf-asset-manager": "^1.0",
+        "zfcampus/zf-composer-autoloading": "^1.0",
+        "zfcampus/zf-deploy": "^1.2",
+        "phpunit/phpunit": "^5.5",
+        "squizlabs/php_codesniffer": "^2.6",
+        "zendframework/zend-test": "^3.0"
+    },
+    "suggest": {
+        "zfcampus/zf-apigility-doctrine": "zfcampus/zf-apigility-doctrine ^2.1 to create Doctrine-Connected REST services",
+        "zfcampus/zf-http-cache": "zfcampus/zf-http-cache ^1.3 to add HTTP caching to your API",
+        "zfr/zfr-cors": "zfr/zfr-cors ^1.2 to add CORS support to your API"
+    },
+    "autoload": {
+        "psr-4": {
+            "Application\\": "module/Application/src/",
+            "Aqilix\\": "module/Aqilix/src/",
+            "Core\\": "module/Core/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApplicationTest\\": "module/Application/test/",
+            "AqilixTest\\": "module/Aqilix/test/"
+        },
+        "files": [
+            "src/Apigility/constants.php"
+        ]
+    },
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "development-db-create": "doctrine-module orm:schema-tool:create",
+        "development-db-drop": "doctrine-module orm:schema-tool:drop --force",
+        "development-db-data-fixture-import": "doctrine-module data-fixture:import",
+        "development-disable": "zf-development-mode disable",
+        "development-enable": "zf-development-mode enable",
+        "development-status": "zf-development-mode status",
+        "serve": "php -S 0.0.0.0:8080 -t public/ public/index.php",
+        "test": "phpunit"
+    }
+}

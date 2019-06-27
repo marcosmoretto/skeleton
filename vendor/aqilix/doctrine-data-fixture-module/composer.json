@@ -1,0 +1,54 @@
+{
+    "name": "aqilix/doctrine-data-fixture-module",
+    "description": "Zend Framework 3 Module that provides Doctrine Data-Fixture functionality",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "doctrine",
+        "data-fixture",
+        "module",
+        "php7",
+        "zf3",
+        "zf2"
+    ],
+    "homepage": "http://www.doctrine-project.org/",
+    "authors": [
+        {
+            "name": "Martin Shwalbe",
+            "email": "martin.shwalbe@gmail.com"
+        },
+        {
+            "name": "Dolly Aswin",
+            "email": "dolly.aswin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "zendframework/zend-modulemanager": "^2.7.1",
+        "zendframework/zend-eventmanager": "^2.6.3 || ^3.0.1",
+        "zendframework/zend-servicemanager": "^2.7.6 || ^3.1.1",
+        "doctrine/data-fixtures": "^1.2.1",
+        "doctrine/doctrine-orm-module": "^1.1"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": ">=0.6.0",
+        "phpunit/phpunit": "^5.5",
+        "squizlabs/php_codesniffer": "^2.6"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.6-dev",
+            "dev-develop": "0.0.7-dev"
+        }
+    },
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "DoctrineDataFixtureModule\\": "src/DoctrineDataFixtureModule/"
+        }
+    }
+}
