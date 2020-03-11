@@ -23,6 +23,7 @@ return array(
                 'Profile\\V1' => 'oauth2_pdo',
                 'User\\V1' => 'oauth2_pdo',
                 'Usuarios\\V1' => 'oauth2_pdo',
+                'Projeto\\V1' => 'oauth2_pdo',
             ),
         ),
     ),

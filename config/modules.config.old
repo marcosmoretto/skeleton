@@ -40,4 +40,10 @@ return [
     'User',
     34 => 'Core',
     38 => 'Sistema',
+    'Usuarios',
+    'ZF\\HttpCache',
+    'ZendDeveloperTools',
+    'ZF\\Apigility\\Admin',
+    'DoctrineDataFixtureModule',
+    'ZF\Apigility\Documentation\Swagger',
 ];

@@ -9,13 +9,13 @@ class ComposerStaticInitda7e163a81983e908b5acb6d26dd27e6
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '10a6847eba8a430a134fad89f4a30a26' => __DIR__ . '/..' . '/zendframework/zend-cache/autoload/patternPluginManagerPolyfill.php',
         '855e546bf265f75fd3ea5a9dff87703b' => __DIR__ . '/..' . '/zfcampus/zf-hal/src/_autoload.php',
         'dc55c110342095dce21b6357af7bc409' => __DIR__ . '/..' . '/zendframework/zend-test/autoload/phpunit-class-aliases.php',
-        '34901568a1e26d13dd475cb2c85e0284' => __DIR__ . '/..' . '/zendframework/zend-form/autoload/formElementManagerPolyfill.php',
         '742b7e606e92b28dd726e835467f413a' => __DIR__ . '/..' . '/herrera-io/json/src/lib/json_version.php',
+        '34901568a1e26d13dd475cb2c85e0284' => __DIR__ . '/..' . '/zendframework/zend-form/autoload/formElementManagerPolyfill.php',
         'f0e9d233388e461ee3c460665eb265f0' => __DIR__ . '/..' . '/herrera-io/phar-update/src/lib/constants.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '556f5071d8fae5ef9840aa892729d892' => __DIR__ . '/../..' . '/src/Apigility/constants.php',
     );
 
@@ -167,8 +167,8 @@ class ComposerStaticInitda7e163a81983e908b5acb6d26dd27e6
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'chillerlan\\Settings\\' => 
         array (
@@ -532,10 +532,10 @@ class ComposerStaticInitda7e163a81983e908b5acb6d26dd27e6
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
-            1 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
             2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
-            3 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
         'DoctrineDataFixtureModule\\' => 
         array (

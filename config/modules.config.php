@@ -4,7 +4,7 @@
  *
  * The previous config file has been stored in ./config/modules.config.old
  */
-return [
+return array(
     'Zend\\Db',
     'Zend\\Form',
     'ZF\\HttpCache',
@@ -45,5 +45,6 @@ return [
     'ZendDeveloperTools',
     'ZF\\Apigility\\Admin',
     'DoctrineDataFixtureModule',
-    'ZF\Apigility\Documentation\Swagger',
-];
+    'ZF\\Apigility\\Documentation\\Swagger',
+    'Projeto',
+);
