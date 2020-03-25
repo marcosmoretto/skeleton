@@ -1,55 +1,20 @@
 <?php
-namespace Projeto\V1\Rest\Projeto;
+namespace Projeto\V1\Rest\Tarefa;
 
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
-use Core\Entity\Projeto\Projeto;
 
-class ProjetoResource extends AbstractResourceListener
+class TarefaResource extends AbstractResourceListener
 {
-	protected $em;
-	protected $sm;
-	protected $db;
-	//protected $service;
-	public function __construct($services){
-		$this->sm = $services;
-		$this->em = $services->get('Doctrine\ORM\EntityManager');
-		//$this->db = $service->get('oauth2');
-	}
     /**
      * Create a resource
      *
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
-    public function create($data){
-    	$data = $this->getInputFilter()->getValues();
-    	$usr = $this->getEvent()->getIdentity()->getAuthenticationIdentity();
-    	$projeto = new Projeto();
-    	$projeto->nome = $data['nome'];
-    	$data_ini = \DateTime::createFromFormat("Y-m-d", $data['data_inicial']);
-    	$data_fim = \DateTime::createFromFormat("Y-m-d", $data['data_fim']);
-    	$projeto->dataIniEstimado = $data_ini;
-    	$projeto->dataIni = $data_ini;
-    	$projeto->dataFimEstimado = $data_fim;
-    	$projeto->dataFim = $data_fim;
-		$projeto->descricao = $data['descricao'];
-		$dono = $this->em->getRepository(\Core\Entity\Projeto\Usuario::class)->findOneBy(['clientId' => $usr['client_id']]);
-		//\Doctrine\Common\Util\Debug::dump($dono);
-		$projeto->idDono = $dono;
-		$status = $this->em->getRepository(\Core\Entity\Projeto\Status::class)->findOneBy(['id' => $data['status']]);
-		$projeto->idStatus = $status;
-		$prioridade = $this->em->getRepository(\Core\Entity\Projeto\Prioridade::class)->findOneBy(['id' => $data['prioridade']]);
-		$projeto->idPrioridade = $prioridade;
-    	try{
-    		$this->em->persist($projeto);
-    		$this->em->flush();
-         return $projeto;
-		} catch (\Exception $e){
-			var_dump($e->getCode());
-			var_dump($e->getMessage());
-			exit;
-		}
+    public function create($data)
+    {
+        return new ApiProblem(405, 'The POST method has not been defined');
     }
 
     /**

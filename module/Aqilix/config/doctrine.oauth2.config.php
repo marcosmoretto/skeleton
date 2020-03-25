@@ -58,6 +58,13 @@ return [
                     __DIR__.'/Core/Entity/Endereco'
                 ],
             ],
+            'core_projeto' => [
+                'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [
+                    __DIR__.'/Core/Entity/Projeto'
+                ],
+            ],
             'orm_default' => [
                 'drivers' => [
                     'Aqilix\OAuth2\Entity' => 'aqilix_oauth2_entity'

@@ -17,6 +17,7 @@ return [
                     'Core\Entity\Mail' => 'core_mail',
                     'Core\Entity\Oauth' => 'core_oauth',
                     'Core\Entity\Endereco' => 'core_endereco',
+                    'Core\Entity\Projeto' => 'core_projeto',
                 ]
             ]
         ],
