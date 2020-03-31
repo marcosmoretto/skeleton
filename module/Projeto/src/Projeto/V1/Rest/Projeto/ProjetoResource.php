@@ -3,7 +3,7 @@ namespace Projeto\V1\Rest\Projeto;
 
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
-use Core\Entity\Projeto\Projeto;
+use Core\Service\Projeto\ProjetoService as Projeto;
 
 class ProjetoResource extends AbstractResourceListener
 {
@@ -24,32 +24,9 @@ class ProjetoResource extends AbstractResourceListener
      */
     public function create($data){
     	$data = $this->getInputFilter()->getValues();
-    	$usr = $this->getEvent()->getIdentity()->getAuthenticationIdentity();
-    	$projeto = new Projeto();
-    	$projeto->nome = $data['nome'];
-    	$data_ini = \DateTime::createFromFormat("Y-m-d", $data['data_inicial']);
-    	$data_fim = \DateTime::createFromFormat("Y-m-d", $data['data_fim']);
-    	$projeto->dataIniEstimado = $data_ini;
-    	$projeto->dataIni = $data_ini;
-    	$projeto->dataFimEstimado = $data_fim;
-    	$projeto->dataFim = $data_fim;
-		$projeto->descricao = $data['descricao'];
-		$dono = $this->em->getRepository(\Core\Entity\Projeto\Usuario::class)->findOneBy(['clientId' => $usr['client_id']]);
-		//\Doctrine\Common\Util\Debug::dump($dono);
-		$projeto->idDono = $dono;
-		$status = $this->em->getRepository(\Core\Entity\Projeto\Status::class)->findOneBy(['id' => $data['status']]);
-		$projeto->idStatus = $status;
-		$prioridade = $this->em->getRepository(\Core\Entity\Projeto\Prioridade::class)->findOneBy(['id' => $data['prioridade']]);
-		$projeto->idPrioridade = $prioridade;
-    	try{
-    		$this->em->persist($projeto);
-    		$this->em->flush();
-         return $projeto;
-		} catch (\Exception $e){
-			var_dump($e->getCode());
-			var_dump($e->getMessage());
-			exit;
-		}
+        $usr = $this->getEvent()->getIdentity()->getAuthenticationIdentity();
+        $projeto = new Projeto($this->em);
+        $projeto->create($data, $usr);
     }
 
     /**
@@ -82,7 +59,9 @@ class ProjetoResource extends AbstractResourceListener
      */
     public function fetch($id)
     {
-        return new ApiProblem(405, 'The GET method has not been defined for individual resources');
+        //http://127.0.0.1:8080/projeto/:id=1
+        $projeto = new Projeto($this->em);
+        return $projeto->fetch(ltrim($id, '='));
     }
 
     /**
@@ -93,7 +72,9 @@ class ProjetoResource extends AbstractResourceListener
      */
     public function fetchAll($params = [])
     {
-        return new ApiProblem(405, 'The GET method has not been defined for collections');
+        // http://127.0.0.1:8080/projeto
+        $projeto = new Projeto($this->em);
+        return $projeto->fetch();
     }
 
     /**
