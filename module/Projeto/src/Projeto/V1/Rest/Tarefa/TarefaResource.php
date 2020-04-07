@@ -3,9 +3,19 @@ namespace Projeto\V1\Rest\Tarefa;
 
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
+use Core\Service\Projeto\TarefaService as Tarefa;
 
 class TarefaResource extends AbstractResourceListener
 {
+    protected $em;
+	protected $sm;
+	protected $db;
+	//protected $service;
+	public function __construct($services){
+		$this->sm = $services;
+		$this->em = $services->get('Doctrine\ORM\EntityManager');
+		//$this->db = $service->get('oauth2');
+	}
     /**
      * Create a resource
      *
@@ -14,7 +24,10 @@ class TarefaResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        return new ApiProblem(405, 'The POST method has not been defined');
+        $data = $this->getInputFilter()->getValues();
+        $usr = $this->getEvent()->getIdentity()->getAuthenticationIdentity();
+        $tarefa = new Tarefa($this->em);
+        $tarefa->create($data, $usr);
     }
 
     /**

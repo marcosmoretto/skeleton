@@ -5,6 +5,6 @@ class TarefaResourceFactory
 {
     public function __invoke($services)
     {
-        return new TarefaResource();
+        return new TarefaResource($services);
     }
 }

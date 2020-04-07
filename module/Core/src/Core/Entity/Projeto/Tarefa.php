@@ -12,86 +12,79 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tarefa
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="data_fim_estimado", type="string", length=10, nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $dataFimEstimado;
 
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="tarefa_id_seq", allocationSize=1, initialValue=1)
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nome", type="string", nullable=false)
      */
-    private $nome;
+    public $nome;
 
     /**
      * @var string
      *
      * @ORM\Column(name="tarefa", type="string", nullable=false)
      */
-    private $tarefa;
+    public $tarefa;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="data", type="datetime", nullable=false)
      */
-    private $data;
+    public $data;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="data_ini", type="datetime", nullable=false)
      */
-    private $dataIni;
+    public $dataIni;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="data_ini_estimado", type="datetime", nullable=false)
      */
-    private $dataIniEstimado;
+    public $dataIniEstimado;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="data_fim", type="datetime", nullable=false)
      */
-    private $dataFim;
+    public $dataFim;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="data_fim_estimado_1", type="datetime", nullable=false)
+     * @ORM\Column(name="data_fim_estimado", type="datetime", nullable=false)
      */
-    private $dataFimEstimado1;
+    public $dataFimEstimado;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="tempo", type="datetime", nullable=false)
+     * @ORM\Column(name="tempo", type="integer", nullable=false)
      */
-    private $tempo;
+    public $tempo;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="tempo_estimado", type="datetime", nullable=false)
+     * @ORM\Column(name="tempo_estimado", type="integer", nullable=false)
      */
-    private $tempoEstimado;
+    public $tempoEstimado;
 
     /**
      * @var \Status
@@ -101,7 +94,7 @@ class Tarefa
      *   @ORM\JoinColumn(name="id_status", referencedColumnName="id")
      * })
      */
-    private $idStatus;
+    public $idStatus;
 
     /**
      * @var \Prioridade
@@ -111,7 +104,7 @@ class Tarefa
      *   @ORM\JoinColumn(name="id_prioridade", referencedColumnName="id")
      * })
      */
-    private $idPrioridade;
+    public $idPrioridade;
 
     /**
      * @var \Usuario
@@ -121,7 +114,7 @@ class Tarefa
      *   @ORM\JoinColumn(name="id_criador", referencedColumnName="id")
      * })
      */
-    private $idCriador;
+    public $idCriador;
 
     /**
      * @var \Usuario
@@ -131,7 +124,7 @@ class Tarefa
      *   @ORM\JoinColumn(name="id_desenvolvedor", referencedColumnName="id")
      * })
      */
-    private $idDesenvolvedor;
+    public $idDesenvolvedor;
 
     /**
      * @var \Projeto
@@ -141,7 +134,7 @@ class Tarefa
      *   @ORM\JoinColumn(name="id_projeto", referencedColumnName="id")
      * })
      */
-    private $idProjeto;
+    public $idProjeto;
 
 
 }
