@@ -11,8 +11,24 @@ class TarefaService {
         $this->em = $em;
     }
 
-    public function create($data, $usr){
-    	$tarefa = new Tarefa();
+    public function update($id, $data, $usr){
+        $usuario = $this->em->getRepository(\Core\Entity\Projeto\Usuario::class)->findOneBy(['clientId' => $usr['client_id']]);
+        $usuario = $usuario->id;
+        $tarefa = $this->em->getRepository(\Core\Entity\Projeto\Tarefa::class)->findOneBy(['id' => $id, 'idCriador' => $usuario]);
+        if(!$tarefa){
+            $tarefa = $this->em->getRepository(\Core\Entity\Projeto\Tarefa::class)->findOneBy(['id' => $id, 'idDesenvolvedor' => $usuario]);
+        }
+        // \Doctrine\Common\Util\Debug::dump($projeto);
+        if($tarefa){
+            return $this->create($data, $usr, $tarefa);
+        }
+        return 'Nenhuma tarefa encontrada!';
+    }
+
+    public function create($data, $usr, $tarefa=null){
+        if(!$tarefa){
+            $tarefa = new Tarefa();
+        }
         $tarefa->nome = $data['nome'];
         $tarefa->data = new \DateTime();
     	$data_fim_estimado = \DateTime::createFromFormat("d/m/Y", $data['data_fim_estimado']);

@@ -20,14 +20,14 @@ class Usuario
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="usuario_id_seq", allocationSize=1, initialValue=1)
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="client_id", type="string", nullable=false)
      */
-    private $clientId;
+    public $clientId;
 
 
 }
