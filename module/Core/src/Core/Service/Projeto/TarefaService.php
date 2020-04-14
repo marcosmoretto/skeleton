@@ -40,6 +40,9 @@ class TarefaService {
     	$tarefa->dataFimEstimado = $data_fim_estimado;
         $tarefa->dataFim = $data_fim;
         $projeto = $this->em->getRepository(\Core\Entity\Projeto\Projeto::class)->findOneBy(['id' => $data['id_projeto']]);
+        if(!$projeto){
+            return ['codigo' => 404, 'mensagem' => 'Nenhum projeto foi encontrado!'];
+        }
         // \Doctrine\Common\Util\Debug::dump($projeto);
         // exit;
         $tarefa->idProjeto = $projeto;
@@ -57,11 +60,11 @@ class TarefaService {
     	try{
     		$this->em->persist($tarefa);
     		$this->em->flush();
-            return $tarefa;
+            return ['codigo' => 201, 'mensagem' => 'Tarefa criada com sucesso!'];
 		} catch (\Exception $e){
-			var_dump($e->getCode());
-			var_dump($e->getMessage());
-			exit;
+			// var_dump($e->getCode());
+			// var_dump($e->getMessage());
+			return ['codigo' => 500, 'mensagem' => 'Não foi possível criar uma tarefa!'];
 		}
     }
 
@@ -76,6 +79,26 @@ class TarefaService {
         }
         $result = $qb->getQuery()->getResult();
         return $result;
+    }
+
+    public function delete($id, $usr){
+        $usuario = $this->em->getRepository(\Core\Entity\Projeto\Usuario::class)->findOneBy(['clientId' => $usr['client_id']]);
+        // $dono = $this->em->getRepository(\Core\Entity\Projeto\Tarefa::class)->findOneBy(['idCriador' => $usuario->id]);
+        // if($dono){
+            $sql = "delete from tarefa where id = {$id} and id_criador = {$usuario->id} returning id";
+            $stmt = $this->em->getConnection()->prepare($sql);
+            try {
+                $stmt->execute();
+                $retorno = $stmt->fetchAll();
+                if(!isset($retorno[0])){
+                    return ['codigo' => 404, 'mensagem' => 'Não foi possível excluir a tarefa, verique se você é o Dono!'];
+                }
+            } catch (\Exception $e){
+                return ['codigo' => 500, 'mensagem' => 'Não foi possível excluir a tarefa!'];
+            }
+            return ['codigo' => 200, 'mensagem' => 'Excluído com sucesso!'];
+        // }
+        // return ['codigo' => 403, 'mensagem' => 'Você não é o dono da tarefa, deste modo não poderá excluí-la!'];
     }
 
 }

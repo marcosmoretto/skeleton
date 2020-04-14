@@ -27,7 +27,8 @@ class TarefaResource extends AbstractResourceListener
         $data = $this->getInputFilter()->getValues();
         $usr = $this->getEvent()->getIdentity()->getAuthenticationIdentity();
         $tarefa = new Tarefa($this->em);
-        $tarefa->create($data, $usr);
+        $retorno = $tarefa->create($data, $usr);
+        return new ApiProblem($retorno['codigo'], $retorno['mensagem']);
     }
 
     /**
@@ -38,7 +39,10 @@ class TarefaResource extends AbstractResourceListener
      */
     public function delete($id)
     {
-        return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
+        $usr = $this->getEvent()->getIdentity()->getAuthenticationIdentity();
+        $tarefa = new Tarefa($this->em);
+        $retorno = $tarefa->delete($id, $usr);
+        return new ApiProblem($retorno['codigo'], $retorno['mensagem']);
     }
 
     /**
