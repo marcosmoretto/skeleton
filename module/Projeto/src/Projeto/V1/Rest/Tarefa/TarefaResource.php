@@ -64,7 +64,8 @@ class TarefaResource extends AbstractResourceListener
      */
     public function fetch($id)
     {
-        return new ApiProblem(405, 'The GET method has not been defined for individual resources');
+        $tarefa = new Tarefa($this->em);
+        return $tarefa->fetch(ltrim($id, '='));
     }
 
     /**
@@ -75,7 +76,8 @@ class TarefaResource extends AbstractResourceListener
      */
     public function fetchAll($params = [])
     {
-        return new ApiProblem(405, 'The GET method has not been defined for collections');
+        $tarefa = new Tarefa($this->em);
+        return $tarefa->fetch();
     }
 
     /**
