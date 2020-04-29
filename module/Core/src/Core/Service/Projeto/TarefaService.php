@@ -69,6 +69,7 @@ class TarefaService {
     }
 
     public function fetch($id=null){
+        
         $qb = $this->em->createQueryBuilder()
             ->select('t.id, t.nome, t.tarefa, t.dataIni, t.dataFim')
             ->from('Core\Entity\Projeto\Tarefa','t');
